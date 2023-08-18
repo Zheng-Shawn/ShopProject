@@ -1,5 +1,6 @@
 package com.shawn.shopproject.shop.controller;
 
+import com.shawn.shopproject.constant.ProductCategory;
 import com.shawn.shopproject.shop.dto.ProductDTO;
 import com.shawn.shopproject.shop.model.ProductVO;
 import com.shawn.shopproject.shop.service.ProductService;
@@ -27,6 +28,14 @@ public class ProductController {
         }else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
+    }
+    @GetMapping("/getproducts")
+    public ResponseEntity<List<ProductVO>> getProducts(@RequestParam(required = false)ProductCategory productCategory,
+                                                       @RequestParam(required = false)String search){
+
+        List<ProductVO> list = productService.getproducts(productCategory,search);
+
+        return ResponseEntity.status(HttpStatus.OK).body(list);
     }
 
     @PostMapping("/add_product")
@@ -59,13 +68,6 @@ public class ProductController {
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 
-    @GetMapping("/getproducts")
-    public ResponseEntity<List<ProductVO>> getProducts(){
-
-        List<ProductVO> list = productService.getproducts();
-
-        return ResponseEntity.status(HttpStatus.OK).body(list);
-    }
 
 
 

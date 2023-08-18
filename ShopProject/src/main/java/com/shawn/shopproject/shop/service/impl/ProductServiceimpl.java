@@ -1,5 +1,6 @@
 package com.shawn.shopproject.shop.service.impl;
 
+import com.shawn.shopproject.constant.ProductCategory;
 import com.shawn.shopproject.shop.dao.ProductDao;
 import com.shawn.shopproject.shop.dto.ProductDTO;
 import com.shawn.shopproject.shop.model.ProductVO;
@@ -23,8 +24,8 @@ public class ProductServiceimpl implements ProductService {
     }
 
     @Override
-    public List<ProductVO> getproducts() {
-        return productDao.getproducts();
+    public List<ProductVO> getproducts(ProductCategory productCategory,String search) {
+        return productDao.getproducts(productCategory,search);
     }
 
     @Override

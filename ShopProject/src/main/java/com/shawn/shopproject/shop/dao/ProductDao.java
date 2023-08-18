@@ -1,5 +1,6 @@
 package com.shawn.shopproject.shop.dao;
 
+import com.shawn.shopproject.constant.ProductCategory;
 import com.shawn.shopproject.shop.dto.ProductDTO;
 import com.shawn.shopproject.shop.model.ProductVO;
 
@@ -9,7 +10,7 @@ public interface ProductDao {
 
     ProductVO getProductById(Integer productId);
 
-    List<ProductVO> getproducts();
+    List<ProductVO> getproducts(ProductCategory productCategory,String search);
 
     String addProduct(ProductDTO productDTO);
 

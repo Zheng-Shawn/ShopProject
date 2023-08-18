@@ -24,8 +24,13 @@ public class ProductServiceimpl implements ProductService {
     }
 
     @Override
-    public List<ProductVO> getproducts(ProductQueryParam productQueryParam) {
-        return productDao.getproducts(productQueryParam);
+    public List<ProductVO> getProducts(ProductQueryParam productQueryParam) {
+        return productDao.getProducts(productQueryParam);
+    }
+
+    @Override
+    public Integer getProductsTotal(ProductQueryParam productQueryParam) {
+        return productDao.getProductsTotal(productQueryParam);
     }
 
     @Override

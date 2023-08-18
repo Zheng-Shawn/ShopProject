@@ -10,8 +10,8 @@ public interface ProductDao {
 
     ProductVO getProductById(Integer productId);
 
-    List<ProductVO> getproducts(ProductQueryParam productQueryParam);
-
+    List<ProductVO> getProducts(ProductQueryParam productQueryParam);
+    Integer getProductsTotal(ProductQueryParam productQueryParam);
     String addProduct(ProductDTO productDTO);
 
     void updateProduct(Integer productId ,ProductDTO productDTO);

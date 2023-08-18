@@ -6,9 +6,12 @@ import com.shawn.shopproject.shop.dto.ProductQueryParam;
 import com.shawn.shopproject.shop.model.ProductVO;
 import com.shawn.shopproject.shop.rowmapper.ProductRowMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Component;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -39,7 +42,7 @@ public class ProductDaoimpl implements ProductDao {
     }
 
     @Override
-    public List<ProductVO> getproducts(ProductQueryParam productQueryParam) {
+    public List<ProductVO> getProducts(ProductQueryParam productQueryParam) {
         String sql = "SELECT * FROM product WHERE 1=1 ";
        //查全部或帶參數的查詢  因1=1對查詢結果不影響，但為了拼接sql變數，而要使用AND連接
 
@@ -65,6 +68,27 @@ public class ProductDaoimpl implements ProductDao {
         List<ProductVO> list = namedParameterJdbcTemplate.query(sql,map,new ProductRowMapper());
 
         return list;
+    }
+
+    @Override
+    public Integer getProductsTotal(ProductQueryParam productQueryParam) {
+        String sql = "SELECT count(*) FROM product WHERE 1=1";
+
+        HashMap<String,Object> map = new HashMap<>();
+
+        if (productQueryParam.getProductCategory() != null){
+            sql += " AND category = :category";
+            map.put("category",productQueryParam.getProductCategory().name());
+        }
+        if (productQueryParam.getSearch() != null){
+            sql += " AND product_name LIKE :product_name";
+            map.put("product_name","%" + productQueryParam.getSearch() + "%");
+        }
+
+        //當要取得非實體的值,寫法會稍微不同於query()
+       Integer total = namedParameterJdbcTemplate.queryForObject(sql,map,Integer.class);
+
+        return total;
     }
 
     @Override

@@ -10,7 +10,8 @@ public interface ProductService {
 
     ProductVO getProductById(Integer productId);
 
-    List<ProductVO> getproducts(ProductQueryParam productQueryParam);
+    List<ProductVO> getProducts(ProductQueryParam productQueryParam);
+    Integer getProductsTotal(ProductQueryParam productQueryParam);
 
     String addProduct(ProductDTO productDTO);
 

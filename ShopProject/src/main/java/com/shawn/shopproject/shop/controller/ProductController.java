@@ -5,8 +5,8 @@ import com.shawn.shopproject.shop.dto.ProductDTO;
 import com.shawn.shopproject.shop.dto.ProductQueryParam;
 import com.shawn.shopproject.shop.model.ProductVO;
 import com.shawn.shopproject.shop.service.ProductService;
+import com.shawn.shopproject.util.Page;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.context.properties.bind.DefaultValue;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -36,18 +36,26 @@ public class ProductController {
         }
     }
     @GetMapping("/getproducts")
-    public ResponseEntity<List<ProductVO>> getProducts(@RequestParam(required = false)ProductCategory productCategory,
-                                                       @RequestParam(required = false)String search,
-                                                       @RequestParam(defaultValue = "created_date" )String orderBy,
-                                                       @RequestParam(defaultValue = "DESC")String sort,
-                                                       @RequestParam(defaultValue = "5") @Max(50) @Min(0) Integer limit,
-                                                       @RequestParam(defaultValue = "0") @Min(0) Integer offset){
+    public ResponseEntity<Page> getProducts(//查詢
+                                            @RequestParam(required = false)ProductCategory productCategory,
+                                            @RequestParam(required = false)String search,
+                                            //排序
+                                            @RequestParam(defaultValue = "created_date" )String orderBy,
+                                            @RequestParam(defaultValue = "DESC")String sort,
+                                            //分頁
+                                            @RequestParam(defaultValue = "10") @Max(50) @Min(0) Integer limit,
+                                            @RequestParam(defaultValue = "0") @Min(0) Integer offset){
 
+        //為接收請求參數初始化一個類別,加強解藕姓，若需修改傳入參數，修改幅度不大
         ProductQueryParam productQueryParam = new ProductQueryParam(productCategory,search,orderBy,sort,limit,offset);
 
-        List<ProductVO> list = productService.getproducts(productQueryParam);
+        List<ProductVO> list = productService.getProducts(productQueryParam);
+        Integer total = productService.getProductsTotal(productQueryParam);
 
-        return ResponseEntity.status(HttpStatus.OK).body(list);
+        //為回傳資料初始化一個類別,除了商品列表及增加回傳總筆數,加強前端分頁功能
+        Page page = new Page(limit,offset,total,list);
+
+        return ResponseEntity.status(HttpStatus.OK).body(page);
     }
 
     @PostMapping("/add_product")

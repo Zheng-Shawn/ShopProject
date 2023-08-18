@@ -17,9 +17,7 @@ public class ProductRowMapper implements RowMapper<ProductVO>{
         productVO.setProduct_id(resultSet.getInt("product_id"));
         productVO.setProduct_name(resultSet.getString("product_name"));
 
-//        String to Enum
-//      productVO.setCategory(resultSet.getString(ProductCategory.valueOf("category")));
-
+//        String to Enum 字串轉成Enum類型
         String categoryStr = resultSet.getString("category");
         ProductCategory productCategory = ProductCategory.valueOf(categoryStr);
         productVO.setCategory(productCategory);

@@ -31,9 +31,9 @@ public class ProductDaoimpl implements ProductDao {
 
         List<ProductVO> productVOList = namedParameterJdbcTemplate.query(sql, map, new ProductRowMapper());
 
-        if (productVOList.size() > 0){
+        if (productVOList.size() > 0) {
             return productVOList.get(0);
-        }else {
+        } else {
             return null;
         }
     }
@@ -43,43 +43,57 @@ public class ProductDaoimpl implements ProductDao {
         String sql = "INSERT INTO product(product_name,category,image_url,price,stock,description,created_date,last_modified_date)" +
                 "VALUES (:product_name,:category,:image_url,:price,stock,:description,:created_date,:last_modified_date)";
 
-        Map<String,Object> map = new HashMap<>();
+        Map<String, Object> map = new HashMap<>();
 
-        map.put("product_name",productDTO.getProduct_name());
-        map.put("category",productDTO.getCategory().toString());
-        map.put("image_url",productDTO.getImage_url());
-        map.put("price",productDTO.getPrice());
-        map.put("stock",productDTO.getStock());
-        map.put("description",productDTO.getDescription());
+        map.put("product_name", productDTO.getProduct_name());
+        map.put("category", productDTO.getCategory().toString());
+        map.put("image_url", productDTO.getImage_url());
+        map.put("price", productDTO.getPrice());
+        map.put("stock", productDTO.getStock());
+        map.put("description", productDTO.getDescription());
 
         Date now = new Date();
-        map.put("created_date",now);
-        map.put("last_modified_date",now);
+        map.put("created_date", now);
+        map.put("last_modified_date", now);
 
-        namedParameterJdbcTemplate.update(sql,new MapSqlParameterSource(map));
+        namedParameterJdbcTemplate.update(sql,map);
 
         return "新增成功";
     }
 
     @Override
     public void updateProduct(Integer productId, ProductDTO productDTO) {
-            String sql = "UPDATE product SET product_name = :product_name,category = :category, image_url = :image_url," +
-                    "price = :price,stock = :stock,description = :description,last_modified_date = :last_modified_date " +
-                    "WHERE product_id = :productId";
+        String sql = "UPDATE product SET product_name = :product_name,category = :category, image_url = :image_url," +
+                "price = :price,stock = :stock,description = :description,last_modified_date = :last_modified_date " +
+                "WHERE product_id = :productId";
 
-            Map<String,Object> map = new HashMap<>();
-            map.put("productId",productId);
+        Map<String, Object> map = new HashMap<>();
+        map.put("productId", productId);
 
-            map.put("product_name",productDTO.getProduct_name());
-            map.put("category",productDTO.getCategory().toString());
-            map.put("image_url",productDTO.getImage_url());
-            map.put("price",productDTO.getPrice());
-            map.put("stock",productDTO.getStock());
-            map.put("description",productDTO.getDescription());
+        map.put("product_name", productDTO.getProduct_name());
+        map.put("category", productDTO.getCategory().toString());
+        map.put("image_url", productDTO.getImage_url());
+        map.put("price", productDTO.getPrice());
+        map.put("stock", productDTO.getStock());
+        map.put("description", productDTO.getDescription());
 
-            Date now = new Date();
-            map.put("last_modified_date",now);
+        Date now = new Date();
+        map.put("last_modified_date", now);
 
-            namedParameterJdbcTemplate.update(sql,map);
-        }
+        namedParameterJdbcTemplate.update(sql, map);
+    }
+
+    @Override
+    public void deleteProductById(Integer productId) {
+        String sql = "DELETE FROM product WHERE product_id = :productid";
+
+        Map<String,Object> map = new HashMap<>();
+
+        map.put("productid",productId);
+
+        namedParameterJdbcTemplate.update(sql,map);
+
+
+
+    }
 }

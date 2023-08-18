@@ -9,11 +9,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.bind.DefaultValue;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import java.util.List;
 
+@Validated
 @RestController
 public class ProductController {
 
@@ -35,9 +39,11 @@ public class ProductController {
     public ResponseEntity<List<ProductVO>> getProducts(@RequestParam(required = false)ProductCategory productCategory,
                                                        @RequestParam(required = false)String search,
                                                        @RequestParam(defaultValue = "created_date" )String orderBy,
-                                                       @RequestParam(defaultValue = "DESC")String sort){
+                                                       @RequestParam(defaultValue = "DESC")String sort,
+                                                       @RequestParam(defaultValue = "5") @Max(50) @Min(0) Integer limit,
+                                                       @RequestParam(defaultValue = "0") @Min(0) Integer offset){
 
-        ProductQueryParam productQueryParam = new ProductQueryParam(productCategory,search,orderBy,sort);
+        ProductQueryParam productQueryParam = new ProductQueryParam(productCategory,search,orderBy,sort,limit,offset);
 
         List<ProductVO> list = productService.getproducts(productQueryParam);
 

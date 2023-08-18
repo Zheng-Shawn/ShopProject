@@ -8,12 +8,16 @@ public class ProductQueryParam {
     private String search;
     private String created_date;
     private String sort;
+    private Integer limit;
+    private Integer offset;
 
-    public ProductQueryParam(ProductCategory productCategory,String search,String created_date,String sort){
+    public ProductQueryParam(ProductCategory productCategory,String search,String created_date,String sort,Integer limit,Integer offset){
         this.productCategory = productCategory;
         this.search = search;
         this.created_date = created_date;
         this.sort = sort;
+        this.limit = limit;
+        this.offset = offset;
     }
 
     public ProductCategory getProductCategory() {
@@ -32,4 +36,11 @@ public class ProductQueryParam {
         return sort;
     }
 
+    public Integer getLimit() {
+        return limit;
+    }
+
+    public Integer getOffset() {
+        return offset;
+    }
 }

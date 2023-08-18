@@ -41,10 +41,11 @@ public class ProductDaoimpl implements ProductDao {
     @Override
     public List<ProductVO> getproducts(ProductQueryParam productQueryParam) {
         String sql = "SELECT * FROM product WHERE 1=1 ";
-//      查全部或帶參數的查詢  因1=1對查詢結果不影響，但為了拼接sql變數，而要使用AND連接
+       //查全部或帶參數的查詢  因1=1對查詢結果不影響，但為了拼接sql變數，而要使用AND連接
 
         Map<String,Object> map = new HashMap<>();
 
+       //查詢條件
         if (productQueryParam.getProductCategory() != null){
             sql += " AND category = :category";
             map.put("category",productQueryParam.getProductCategory().name());
@@ -53,8 +54,13 @@ public class ProductDaoimpl implements ProductDao {
             sql += " AND product_name LIKE :product_name";
             map.put("product_name","%" + productQueryParam.getSearch() + "%");
         }
-
+        //排序條件
         sql += " ORDER BY " + productQueryParam.getCreated_date() + " " + productQueryParam.getSort();
+
+        //分頁功能 限制查詢筆數
+        sql += " LIMIT :limit OFFSET :offset";
+        map.put("limit",productQueryParam.getLimit());
+        map.put("offset",productQueryParam.getOffset());
 
         List<ProductVO> list = namedParameterJdbcTemplate.query(sql,map,new ProductRowMapper());
 

@@ -39,6 +39,15 @@ public class ProductDaoimpl implements ProductDao {
     }
 
     @Override
+    public List<ProductVO> getproducts() {
+        String sql = "SELECT * FROM product";
+
+        List<ProductVO> list = namedParameterJdbcTemplate.query(sql,new HashMap<>(),new ProductRowMapper());
+
+        return list;
+    }
+
+    @Override
     public String addProduct(ProductDTO productDTO) {
         String sql = "INSERT INTO product(product_name,category,image_url,price,stock,description,created_date,last_modified_date)" +
                 "VALUES (:product_name,:category,:image_url,:price,stock,:description,:created_date,:last_modified_date)";

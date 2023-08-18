@@ -1,12 +1,11 @@
 package com.shawn.shopproject.shop.dao.impl;
 
-import com.shawn.shopproject.constant.ProductCategory;
 import com.shawn.shopproject.shop.dao.ProductDao;
 import com.shawn.shopproject.shop.dto.ProductDTO;
+import com.shawn.shopproject.shop.dto.ProductQueryParam;
 import com.shawn.shopproject.shop.model.ProductVO;
 import com.shawn.shopproject.shop.rowmapper.ProductRowMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Component;
 
@@ -40,20 +39,22 @@ public class ProductDaoimpl implements ProductDao {
     }
 
     @Override
-    public List<ProductVO> getproducts(ProductCategory productCategory,String search) {
+    public List<ProductVO> getproducts(ProductQueryParam productQueryParam) {
         String sql = "SELECT * FROM product WHERE 1=1 ";
 //      查全部或帶參數的查詢  因1=1對查詢結果不影響，但為了拼接sql變數，而要使用AND連接
 
         Map<String,Object> map = new HashMap<>();
 
-        if (productCategory != null){
+        if (productQueryParam.getProductCategory() != null){
             sql += " AND category = :category";
-            map.put("category",productCategory.name());
+            map.put("category",productQueryParam.getProductCategory().name());
         }
-        if (search != null){
+        if (productQueryParam.getSearch() != null){
             sql += " AND product_name LIKE :product_name";
-            map.put("product_name","%" + search + "%");
+            map.put("product_name","%" + productQueryParam.getSearch() + "%");
         }
+
+        sql += " ORDER BY " + productQueryParam.getCreated_date() + " " + productQueryParam.getSort();
 
         List<ProductVO> list = namedParameterJdbcTemplate.query(sql,map,new ProductRowMapper());
 

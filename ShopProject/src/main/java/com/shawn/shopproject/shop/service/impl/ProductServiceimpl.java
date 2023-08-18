@@ -1,8 +1,8 @@
 package com.shawn.shopproject.shop.service.impl;
 
-import com.shawn.shopproject.constant.ProductCategory;
 import com.shawn.shopproject.shop.dao.ProductDao;
 import com.shawn.shopproject.shop.dto.ProductDTO;
+import com.shawn.shopproject.shop.dto.ProductQueryParam;
 import com.shawn.shopproject.shop.model.ProductVO;
 import com.shawn.shopproject.shop.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,8 +24,8 @@ public class ProductServiceimpl implements ProductService {
     }
 
     @Override
-    public List<ProductVO> getproducts(ProductCategory productCategory,String search) {
-        return productDao.getproducts(productCategory,search);
+    public List<ProductVO> getproducts(ProductQueryParam productQueryParam) {
+        return productDao.getproducts(productQueryParam);
     }
 
     @Override

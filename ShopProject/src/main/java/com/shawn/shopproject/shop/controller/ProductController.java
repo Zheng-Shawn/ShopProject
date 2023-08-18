@@ -2,9 +2,11 @@ package com.shawn.shopproject.shop.controller;
 
 import com.shawn.shopproject.constant.ProductCategory;
 import com.shawn.shopproject.shop.dto.ProductDTO;
+import com.shawn.shopproject.shop.dto.ProductQueryParam;
 import com.shawn.shopproject.shop.model.ProductVO;
 import com.shawn.shopproject.shop.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.context.properties.bind.DefaultValue;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -31,9 +33,13 @@ public class ProductController {
     }
     @GetMapping("/getproducts")
     public ResponseEntity<List<ProductVO>> getProducts(@RequestParam(required = false)ProductCategory productCategory,
-                                                       @RequestParam(required = false)String search){
+                                                       @RequestParam(required = false)String search,
+                                                       @RequestParam(defaultValue = "created_date" )String orderBy,
+                                                       @RequestParam(defaultValue = "DESC")String sort){
 
-        List<ProductVO> list = productService.getproducts(productCategory,search);
+        ProductQueryParam productQueryParam = new ProductQueryParam(productCategory,search,orderBy,sort);
+
+        List<ProductVO> list = productService.getproducts(productQueryParam);
 
         return ResponseEntity.status(HttpStatus.OK).body(list);
     }

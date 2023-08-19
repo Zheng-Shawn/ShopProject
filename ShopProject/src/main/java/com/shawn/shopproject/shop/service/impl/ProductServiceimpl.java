@@ -34,8 +34,8 @@ public class ProductServiceimpl implements ProductService {
     }
 
     @Override
-    public String addProduct(ProductDTO productDTO) {
-        return productDao.addProduct(productDTO);
+    public void addProduct(ProductDTO productDTO) {
+        productDao.addProduct(productDTO);
     }
 
     @Override

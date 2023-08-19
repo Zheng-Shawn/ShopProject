@@ -13,7 +13,7 @@ public interface ProductService {
     List<ProductVO> getProducts(ProductQueryParam productQueryParam);
     Integer getProductsTotal(ProductQueryParam productQueryParam);
 
-    String addProduct(ProductDTO productDTO);
+    void addProduct(ProductDTO productDTO);
 
     void updateProduct(Integer productId , ProductDTO productDTO);
 

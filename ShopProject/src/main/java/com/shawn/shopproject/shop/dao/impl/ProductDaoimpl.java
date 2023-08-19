@@ -10,8 +10,6 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Component;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -44,19 +42,13 @@ public class ProductDaoimpl implements ProductDao {
     @Override
     public List<ProductVO> getProducts(ProductQueryParam productQueryParam) {
         String sql = "SELECT * FROM product WHERE 1=1 ";
-       //查全部或帶參數的查詢  因1=1對查詢結果不影響，但為了拼接sql變數，而要使用AND連接
+        //查全部或帶參數的查詢  因1=1對查詢結果不影響，但為了拼接sql變數，而要使用AND連接
 
         Map<String,Object> map = new HashMap<>();
 
-       //查詢條件
-        if (productQueryParam.getProductCategory() != null){
-            sql += " AND category = :category";
-            map.put("category",productQueryParam.getProductCategory().name());
-        }
-        if (productQueryParam.getSearch() != null){
-            sql += " AND product_name LIKE :product_name";
-            map.put("product_name","%" + productQueryParam.getSearch() + "%");
-        }
+        //查詢條件
+        sql = getproductFilter(sql,map,productQueryParam);
+
         //排序條件
         sql += " ORDER BY " + productQueryParam.getCreated_date() + " " + productQueryParam.getSort();
 
@@ -76,14 +68,7 @@ public class ProductDaoimpl implements ProductDao {
 
         HashMap<String,Object> map = new HashMap<>();
 
-        if (productQueryParam.getProductCategory() != null){
-            sql += " AND category = :category";
-            map.put("category",productQueryParam.getProductCategory().name());
-        }
-        if (productQueryParam.getSearch() != null){
-            sql += " AND product_name LIKE :product_name";
-            map.put("product_name","%" + productQueryParam.getSearch() + "%");
-        }
+        sql = getproductFilter(sql,map,productQueryParam);
 
         //當要取得非實體的值,寫法會稍微不同於query()
        Integer total = namedParameterJdbcTemplate.queryForObject(sql,map,Integer.class);
@@ -92,7 +77,7 @@ public class ProductDaoimpl implements ProductDao {
     }
 
     @Override
-    public String addProduct(ProductDTO productDTO) {
+    public void addProduct(ProductDTO productDTO) {
         String sql = "INSERT INTO product(product_name,category,image_url,price,stock,description,created_date,last_modified_date)" +
                 "VALUES (:product_name,:category,:image_url,:price,stock,:description,:created_date,:last_modified_date)";
 
@@ -110,8 +95,6 @@ public class ProductDaoimpl implements ProductDao {
         map.put("last_modified_date", now);
 
         namedParameterJdbcTemplate.update(sql,map);
-
-        return "新增成功";
     }
 
     @Override
@@ -145,8 +128,23 @@ public class ProductDaoimpl implements ProductDao {
         map.put("productid",productId);
 
         namedParameterJdbcTemplate.update(sql,map);
-
-
-
     }
+
+    private String getproductFilter(String sql,Map<String,Object> map,ProductQueryParam productQueryParam){
+
+        if (productQueryParam.getProductCategory() != null){
+            sql += " AND category = :category";
+            map.put("category",productQueryParam.getProductCategory().name());
+        }
+        if (productQueryParam.getSearch() != null){
+            sql += " AND product_name LIKE :product_name";
+            map.put("product_name","%" + productQueryParam.getSearch() + "%");
+        }
+
+        return sql;
+    }
+
+
+
+
 }

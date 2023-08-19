@@ -59,10 +59,11 @@ public class ProductController {
     }
 
     @PostMapping("/add_product")
-    public  ResponseEntity<String> addProductById(@RequestBody @Valid ProductDTO productDTO){
+    public  ResponseEntity<?> addProductById(@RequestBody @Valid ProductDTO productDTO){
 
+        productService.addProduct(productDTO);
 
-        return ResponseEntity.status(HttpStatus.CREATED).body(productService.addProduct(productDTO));
+        return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
     @PutMapping("/update_product/{productId}")

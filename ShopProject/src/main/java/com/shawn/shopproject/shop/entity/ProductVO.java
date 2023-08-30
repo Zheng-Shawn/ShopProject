@@ -1,4 +1,4 @@
-package com.shawn.shopproject.shop.model;
+package com.shawn.shopproject.shop.entity;
 
 import com.shawn.shopproject.constant.ProductCategory;
 

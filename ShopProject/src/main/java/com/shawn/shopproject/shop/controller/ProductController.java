@@ -3,7 +3,7 @@ package com.shawn.shopproject.shop.controller;
 import com.shawn.shopproject.constant.ProductCategory;
 import com.shawn.shopproject.shop.dto.ProductDTO;
 import com.shawn.shopproject.shop.dto.ProductQueryParam;
-import com.shawn.shopproject.shop.model.ProductVO;
+import com.shawn.shopproject.shop.entity.ProductVO;
 import com.shawn.shopproject.shop.service.ProductService;
 import com.shawn.shopproject.util.Page;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,41 +25,42 @@ public class ProductController {
     private ProductService productService;
 
     @GetMapping("/select_product/{productId}")
-    public ResponseEntity<ProductVO> getProductById(@PathVariable Integer productId){
+    public ResponseEntity<ProductVO> getProductById(@PathVariable Integer productId) {
 
         ProductVO productVO = productService.getProductById(productId);
 
-        if(productVO != null){
+        if (productVO != null) {
             return ResponseEntity.status(HttpStatus.OK).body(productVO);
-        }else {
+        } else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
     }
+
     @GetMapping("/getproducts")
     public ResponseEntity<Page> getProducts(//查詢
-                                            @RequestParam(required = false)ProductCategory productCategory,
-                                            @RequestParam(required = false)String search,
+                                            @RequestParam(required = false) ProductCategory productCategory,
+                                            @RequestParam(required = false) String search,
                                             //排序
-                                            @RequestParam(defaultValue = "created_date" )String orderBy,
-                                            @RequestParam(defaultValue = "DESC")String sort,
+                                            @RequestParam(defaultValue = "created_date") String orderBy,
+                                            @RequestParam(defaultValue = "DESC") String sort,
                                             //分頁
                                             @RequestParam(defaultValue = "10") @Max(50) @Min(0) Integer limit,
-                                            @RequestParam(defaultValue = "0") @Min(0) Integer offset){
+                                            @RequestParam(defaultValue = "0") @Min(0) Integer offset) {
 
         //為接收請求參數初始化一個類別,加強解藕姓，若需修改傳入參數，修改幅度不大
-        ProductQueryParam productQueryParam = new ProductQueryParam(productCategory,search,orderBy,sort,limit,offset);
+        ProductQueryParam productQueryParam = new ProductQueryParam(productCategory, search, orderBy, sort, limit, offset);
 
         List<ProductVO> list = productService.getProducts(productQueryParam);
         Integer total = productService.getProductsTotal(productQueryParam);
 
         //為回傳資料初始化一個類別,除了商品列表及增加回傳總筆數,加強前端分頁功能
-        Page page = new Page(limit,offset,total,list);
+        Page page = new Page(limit, offset, total, list);
 
         return ResponseEntity.status(HttpStatus.OK).body(page);
     }
 
     @PostMapping("/add_product")
-    public  ResponseEntity<?> addProductById(@RequestBody @Valid ProductDTO productDTO){
+    public ResponseEntity<?> addProductById(@RequestBody @Valid ProductDTO productDTO) {
 
         productService.addProduct(productDTO);
 
@@ -68,28 +69,26 @@ public class ProductController {
 
     @PutMapping("/update_product/{productId}")
     public ResponseEntity<ProductVO> updateProduct(@PathVariable Integer productId,
-                                                   @RequestBody @Valid ProductDTO productDTO){
+                                                   @RequestBody @Valid ProductDTO productDTO) {
 
         ProductVO productVO = productService.getProductById(productId);
 
-        if(productVO == null){
+        if (productVO == null) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
 
-        productService.updateProduct(productId,productDTO);
+        productService.updateProduct(productId, productDTO);
 
         return ResponseEntity.status(HttpStatus.OK).build();
     }
 
     @DeleteMapping("/delete_product/{productId}")
-    public ResponseEntity<?> deleteproduct(@PathVariable Integer productId){
+    public ResponseEntity<?> deleteproduct(@PathVariable Integer productId) {
 
         productService.deleteProductById(productId);
 
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
-
-
 
 
 }

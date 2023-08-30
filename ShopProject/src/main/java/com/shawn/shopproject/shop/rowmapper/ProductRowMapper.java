@@ -1,7 +1,7 @@
 package com.shawn.shopproject.shop.rowmapper;
 
 import com.shawn.shopproject.constant.ProductCategory;
-import com.shawn.shopproject.shop.model.ProductVO;
+import com.shawn.shopproject.shop.entity.ProductVO;
 import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.ResultSet;

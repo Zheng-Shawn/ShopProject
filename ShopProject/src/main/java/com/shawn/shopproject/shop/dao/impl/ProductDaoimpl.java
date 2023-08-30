@@ -3,10 +3,9 @@ package com.shawn.shopproject.shop.dao.impl;
 import com.shawn.shopproject.shop.dao.ProductDao;
 import com.shawn.shopproject.shop.dto.ProductDTO;
 import com.shawn.shopproject.shop.dto.ProductQueryParam;
-import com.shawn.shopproject.shop.model.ProductVO;
+import com.shawn.shopproject.shop.entity.ProductVO;
 import com.shawn.shopproject.shop.rowmapper.ProductRowMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Component;
 

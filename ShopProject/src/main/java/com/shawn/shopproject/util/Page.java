@@ -1,6 +1,6 @@
 package com.shawn.shopproject.util;
 
-import com.shawn.shopproject.shop.model.ProductVO;
+import com.shawn.shopproject.shop.entity.ProductVO;
 
 import java.util.List;
 

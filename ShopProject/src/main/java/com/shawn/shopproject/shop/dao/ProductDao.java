@@ -2,7 +2,7 @@ package com.shawn.shopproject.shop.dao;
 
 import com.shawn.shopproject.shop.dto.ProductDTO;
 import com.shawn.shopproject.shop.dto.ProductQueryParam;
-import com.shawn.shopproject.shop.model.ProductVO;
+import com.shawn.shopproject.shop.entity.ProductVO;
 
 import java.util.List;
 

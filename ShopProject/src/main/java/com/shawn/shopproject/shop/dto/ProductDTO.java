@@ -2,7 +2,6 @@ package com.shawn.shopproject.shop.dto;
 
 import com.shawn.shopproject.constant.ProductCategory;
 
-import javax.validation.constraints.Max;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
@@ -12,14 +11,13 @@ public class ProductDTO {
     @NotBlank(message = "產品名稱不能為空")
     private String product_name;
     private ProductCategory category;
-    @NotBlank(message = "圖片不能為空")
-    private String image_url;
     @NotNull(message = "售價不能為空")
     private Integer price;
-    @NotNull(message = "庫存不能為空")
-    private Integer stock;
+
+    private Integer sold;
     @NotBlank(message = "商品描述不能為空")
     private String description;
+    private String brand;
 
     public String getProduct_name() {
         return product_name;
@@ -37,13 +35,6 @@ public class ProductDTO {
         this.category = category;
     }
 
-    public String getImage_url() {
-        return image_url;
-    }
-
-    public void setImage_url(String image_url) {
-        this.image_url = image_url;
-    }
 
     public Integer getPrice() {
         return price;
@@ -53,12 +44,12 @@ public class ProductDTO {
         this.price = price;
     }
 
-    public Integer getStock() {
-        return stock;
+    public Integer getSold() {
+        return sold;
     }
 
-    public void setStock(Integer stock) {
-        this.stock = stock;
+    public void setsold(Integer stock) {
+        this.sold = sold;
     }
 
     public String getDescription() {
@@ -69,7 +60,10 @@ public class ProductDTO {
         this.description = description;
     }
 
-
-
-
+    public String getBrand() {
+        return brand;
+    }
+    public void setBrand(String brand) {
+        this.brand = brand;
+    }
 }

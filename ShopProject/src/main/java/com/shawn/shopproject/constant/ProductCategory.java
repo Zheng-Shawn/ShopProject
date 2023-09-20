@@ -5,6 +5,6 @@ public enum ProductCategory {
     SHOES,
     WATCHES,
     FOOD,
-    CAR
+    BAG
 
 }

@@ -19,17 +19,15 @@ public class UtilPic {
         return utilPicId;
     }
 
-    public UtilPic setUtilPicId(Integer utilPicId) {
+    public void setUtilPicId(Integer utilPicId) {
         this.utilPicId = utilPicId;
-        return this;
     }
 
     public byte[] getUtilPic() {
         return utilPic;
     }
 
-    public UtilPic setUtilPic(byte[] utilPic) {
+    public void setUtilPic(byte[] utilPic) {
         this.utilPic = utilPic;
-        return this;
     }
 }

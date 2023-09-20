@@ -1,0 +1,51 @@
+
+.productinfo{
+    margin-top: 100px;
+}
+
+.newarrival{
+    background-color: green;
+    width: 50px;
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.evaluate svg{
+    height: 20px;
+    color: rgb(249, 249, 0);
+}
+
+.price{
+    color: #FE980F;
+    font-size: 26px;
+    font-weight: bold;
+    padding-top: 20px;
+}
+
+.buybtn{
+    --bs-btn-hover-bg:#b38d1e;
+}
+#cartbtn{
+    --bs-btn-hover-bg:rgb(146 159 148);
+}
+
+/* 選項卡 */
+.tab-pane ul li a{
+    text-decoration: none;
+}
+.tab-pane ul p{
+    font-weight: 700;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+/* 登入 */
+
+#loginmodal .form-control{
+    border-color: #5ef0a0;
+}
+#loginmodal .form-control:focus{
+    box-shadow: 0 0 0 0.15rem rgb(13 253 90 / 25%);;
+    border-color: rgb(199 244 234);
+}

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>商品列表</title>
+
+    <!-- bootstrap5 -->
+    <link rel="stylesheet" href="../../import/bootstrap-5.3.1-dist/css/bootstrap.css">
+    <!-- fontawesome -->
+    <link rel="stylesheet" href="../../import/fontawesome-free-6.4.2-web/css/all.css">
+
+    <link rel="stylesheet" href="../index/css/style.css">
+</head>
+<body style="min-width: 300px;">
+
+    <!-- 導覽列 from navbar.js-->
+    <div id="mainnavbar">
+    </div>
+
+    <!-- 模糊搜尋 -->
+    <section>
+        <div class="mx-auto w-50 pt-4">
+            <div class="input-group input-group-lg mb-3">
+                <input type="text" class="form-control border-warning" id="search" placeholder="請輸入搜尋關鍵字"
+                    aria-label="Recipient's username" aria-describedby="button-addon2">
+                <button class="btn btn-outline-warning" type="button" id="button-addon2">搜尋</button>
+            </div>
+        </div>
+    </section>
+    <!-- 過濾搜尋 -->
+    <section class="bg-info bg-opacity-10 border border-info">
+        <span class="d-grid">
+            <button class="btn btn-outline-primary border-0 text-dark fw-bold" type="button" data-bs-toggle="collapse"
+                data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                過濾搜尋</button>
+        </span>
+        <div class="collapse" id="collapseExample">
+            <div class="row w-100 text-center py-3">
+                <div class="col-3 fw-bold"><span>價格區間</span>
+                    <div class="input-group w-100">
+                        <span class="input-group-text">$</span>
+                        <input id="minprice" type="number" class="form-control"
+                            aria-label="Amount (to the nearest dollar)" onchange="priceonchange(this);">
+                        <span class="input-group-text">元</span>
+                    </div>
+                    <span class="fw-bold">至</span>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">$</span>
+                        <input id="maxprice" type="number" class="form-control"
+                            aria-label="Amount (to the nearest dollar)" onchange="priceonchange(this);">
+                        <span class="input-group-text">元</span>
+                    </div>
+                </div>
+                <div class="col-6"><span class="fw-bold"></span>
+                    <div role="group" aria-label="Basic checkbox toggle button group">
+                        <div class="row category">
+                            <!-- <div class="col-4 d-flex justify-content-start align-items-center">
+                                <input value="鞋子" type="checkbox" id="btncheck1">
+                                <label for="btncheck1">鞋子</label>
+                            </div> -->
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-3 fw-bold"><span>排序條件</span>
+                    <div class="d-grid gap-2 pb-2">
+                        <button class="sort btn btn-outline-primary" type="button" onclick="sortonclick(this);" value="price">價格高低<i class="fa-solid fa-sort"></i></button>
+                        <button class="sort btn btn-outline-primary" type="button" onclick="sortonclick(this);" value="createdDate">上架高低<i class="fa-solid fa-sort"></i></button>
+                        <button class="sort btn btn-outline-primary" type="button" onclick="sortonclick(this);" value="sold">銷量高低<i class="fa-solid fa-sort"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- 商品列表 -->
+    <section>
+        <div class="container">
+            <div class="productlist row">
+                <!-- <div class="cardhover col-lg-4 col-md-6 col-12 py-4">
+                    <div class="card border-light border-3">
+                        <img src="../../images/jordan4shoes01.jpg" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">xxx球鞋</h5>
+                            <p class="card-text overflowhidden" style="max-height: 5rem;">Some quick example text to
+                                build on the card title and make up the bulk
+                                of the card's conteome quick example text to build on the card title and make up the
+                            </p>
+                            <span class="fs-3 fw-bold text-warning lh-lg">$111200</span>
+                            <span class="fs-6 fw-light fst-italic">上架日:1234/09/12</span><br>
+                            <span class="lh-lg">已售:123件</span><br>
+                            <a href="#" class="btn btn-warning">看更多</a>
+                            <a href="#" class="btn btn-outline-secondary">加入購物車</a>
+                        </div>
+                    </div>
+                </div> -->
+            </div>
+        </div>
+    </section>
+    <!-- 商品頁碼 -->
+    <section class="pe-4">
+        <nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-end">
+                <!-- <li class="page-item">
+                    <a class="lastpage page-link" onclick="lastpage(this);"><i class="fa-solid fa-angles-left"></i></a>
+                </li>
+                <li class="page-item"><a class="page-link active" href="#">1</a></li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item"><span class="page-link bg-white text-dark" >...</span></li>
+                <li class="page-item"><a class="page-link" href="#">30</a></li>
+                <li class="pagelast page-item">
+                    <a class="page-link" onclick="nextpage();"><i class="fa-solid fa-angles-right"></i></a>
+                </li>  -->
+            </ul>
+        </nav>
+    </section>
+
+<section class="py-5">
+
+</section>
+
+
+</body>
+<!-- jquery -->
+<script src="../../import/jquery.js"></script>
+<!-- jquery cookie -->
+<script src="../../import/carhartl-jquery-cookie-92b7715/jquery.cookie.js"></script>
+<!-- bootstrap5 -->
+<script src="../../import/bootstrap-5.3.1-dist/js/Popper.js"></script>
+<script src="../../import/bootstrap-5.3.1-dist/js/bootstrap.js"></script>
+<!-- fontawesome6 -->
+<script src="../../import/fontawesome-free-6.4.2-web/js/all.js"></script>
+<!-- sweetalert2 -->
+<script src="../../import/sweetalert2.js"></script>
+
+<!-- 導覽列 -->
+<script src="../../util/navbar.js"></script>
+
+<script src="../../shop/index/js/script.js"></script>
+
+
+</html>

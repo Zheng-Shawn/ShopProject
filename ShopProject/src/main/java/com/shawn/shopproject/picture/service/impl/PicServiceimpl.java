@@ -26,18 +26,14 @@ public class PicServiceimpl implements PicService {
 
 
     @Override
-    public List<byte[]> findAllProductPicByproductId(Integer productid) {
+    public List<ProductPic> findAllProductPicByproductId(Integer productid) {
 
-        // 將Iterable可迭代對象 轉換為List 實體集合
+        // 將Iterable可迭代對象 轉換為List 實體集合返回
         Iterable<ProductPic> productPics = productRepository.findAllByproductId(productid);
-        List<ProductPic> VOlist = StreamSupport.stream(productPics.spliterator(), false).collect(Collectors.toList());
-        // 轉換成List byte[]集合
-        List<byte[]> list = new ArrayList<>();
+        List<ProductPic> list = StreamSupport.stream(productPics.spliterator(), false).collect(Collectors.toList());
+
         // 檢查是否為空對象
-        if (!VOlist.isEmpty()) {
-            for (int i = 0; i < VOlist.size(); i++) {
-                list.add(VOlist.get(i).getProductPic());
-            }
+        if (!list.isEmpty()) {
             return list;
         } else {
             return null;

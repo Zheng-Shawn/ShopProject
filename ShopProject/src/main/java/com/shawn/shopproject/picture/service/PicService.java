@@ -9,7 +9,7 @@ public interface PicService {
 
 
 
-    List<byte[]> findAllProductPicByproductId(Integer productid);
+    List<ProductPic> findAllProductPicByproductId(Integer productid);
 
     ProductPic findFirstByproductId(Integer productid);
 

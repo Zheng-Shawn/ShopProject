@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>ProductInfo</title>
+
+    <!-- bootstrap5 -->
+    <link rel="stylesheet" href="../../import/bootstrap-5.3.1-dist/css/bootstrap.css">
+    <!-- fontawesome6 -->
+    <link rel="stylesheet" href="../../import/fontawesome-free-6.4.2-web/css/all.css">
+
+    <link rel="stylesheet" href="../productinfo/css/style.css">
+
+</head>
+
+<body style="min-width: 400px;">
+    <!-- 導覽列 from navbar.js-->
+    <div id="mainnavbar">
+        
+    </div>
+
+    <main class="px-5">
+        <!-- 商品詳情 -->
+        <section>
+            <div class="productinfo container mb-4">
+                <div class="row">
+                    <div class="col-lg-7 col-12">
+                        <div id="carouselExample" class="carousel slide">
+                            <div class="carousel-inner">
+                                <!-- <div class="carousel-item active">
+                                <img src="../productinfo/images/jordan4shoes01.jpg" class="d-block w-100" alt="...">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="../productinfo/images/jordan4shoes02.jpg" class="d-block w-100" alt="...">
+                            </div> -->
+                            </div>
+                            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample"
+                                data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Previous</span>
+                            </button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#carouselExample"
+                                data-bs-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Next</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="col-lg-5 col-12">
+                        <p class="newarrival text-center">new</p>
+                        <h2 class="producttitle text-secondary"></h2>
+                        <p class="productcode">NJ456123</p>
+                        <p class="createdate"></p>
+                        <div class="evaluate">
+                            <i class="fas fa-star i"></i>
+                            <i class="fas fa-star i"></i>
+                            <i class="fas fa-star i"></i>
+                            <i class="fa-solid fa-star-half-stroke i"></i>
+                            <i class="far fa-star i"></i>
+                        </div>
+                        <p class="price"></p>
+                        <label for="sold" class="fw-bold mb-2">已售出:</label>
+                        <span class="availability" id="sold"></span><br>
+                        <label for="category" class="fw-bold mb-2">商品類別:</label>
+                        <span class="category" id="category"></span><br>
+                        <label for="brand" class="fw-bold mb-2">品牌:</label>
+                        <span class="brand" id="brand"></span><br>
+                        <div id="delivery" class="mb-3">
+                            <label for="delivery" class="fw-bold mb-2">配送方式:</label>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="flexRadioDefault"
+                                    id="flexRadioDefault1">
+                                <label class="form-check-label" for="flexRadioDefault1">
+                                    宅配到貨
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="flexRadioDefault"
+                                    id="flexRadioDefault2" checked>
+                                <label class="form-check-label" for="flexRadioDefault2">
+                                    超商取貨
+                                </label>
+                            </div>
+                        </div>
+                        <label for="quantity" class="fw-bold mb-3">選擇數量:</label>
+                        <input class="quantity" type="number" value="1" min="1" id="quantity" style="width: 100px;"><br>
+                        <button class="buybtn btn btn-warning text-white mb-2">
+                            直接購買
+                        </button>
+                        <button class="btn btn-outline-secondary text-dark mb-2" id="cartbtn" onclick="addcart();">
+                            <i class="fa-solid fa-cart-shopping" style="color: #000000;"></i>加入購物車
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- 商品描述 -->
+        <section>
+            <div class="row justify-content-xxl-center justify-content-xl-start">
+                <div class="col-xxl-12 col-xl-10 col-md-10 col-12 border border-secondary border-opacity-25"
+                    style="max-width:1330px;">
+                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link active" id="home-tab" data-bs-toggle="tab"
+                                data-bs-target="#home-tab-pane" type="button" role="tab" aria-controls="home-tab-pane"
+                                aria-selected="true">商品特色</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="profile-tab" data-bs-toggle="tab"
+                                data-bs-target="#profile-tab-pane" type="button" role="tab"
+                                aria-controls="profile-tab-pane" aria-selected="false">商品評價</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="contact-tab" data-bs-toggle="tab"
+                                data-bs-target="#contact-tab-pane" type="button" role="tab"
+                                aria-controls="contact-tab-pane" aria-selected="false">商品規格</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="disabled-tab" data-bs-toggle="tab"
+                                data-bs-target="#disabled-tab-pane" type="button" role="tab"
+                                aria-controls="disabled-tab-pane" aria-selected="false">退換貨須知</button>
+                        </li>
+                    </ul>
+                    <div class="tab-content" id="myTabContent">
+                        <div class="tab-pane fade show active p-4" id="home-tab-pane" role="tabpanel"
+                            aria-labelledby="home-tab" tabindex="0">
+                        </div>
+                        <div class="tab-pane fade p-4" id="profile-tab-pane" role="tabpanel"
+                            aria-labelledby="profile-tab" tabindex="0">
+                            2</div>
+                        <div class="tab-pane fade p-4" id="contact-tab-pane" role="tabpanel"
+                            aria-labelledby="contact-tab" tabindex="0">
+                            3</div>
+                        <div class="tab-pane fade p-4" id="disabled-tab-pane" role="tabpanel"
+                            aria-labelledby="disabled-tab" tabindex="0">
+                            <ul>
+                                <!-- 2018-09-03 zihsu 商品頁之退換貨須知內容調整 需求單號:2018072500058359-->
+                                <p>退換貨須知：</p>
+                                <li>商品到貨享十天猶豫期之權益<span
+                                        class="text-danger">（注意！猶豫期非試用期）</span>，辦理退貨商品必須是全新狀態且包裝完整，商品一經拆封，等同商品價值已受損，僅能以福利品出售，若需退換貨，我方須收取價值損失之費用(回復原狀、整新費)，請先確認商品正確、外觀可接受，再行開機/使用，以免影響您的權利，祝您購物順心。<a
+                                        href="https://www.momoshop.com.tw/mypage/MemberCenter.jsp?func=35"
+                                        target="_blank">各類商品退換貨限制說明</a></li>
+                                <li>momo出貨已全程攝影，為保障您購物權益，開箱過程請全程錄影；如有問題請反映客服並提供錄影檔案，祝您購物愉快。</li>
+
+                                <li>下載版序號、珠寶、黃金類訂單之商品暫不提供線上退/換貨，3C類商品暫不提供換貨服務，其它商品僅限換貨1次。</li>
+                                <li>個人衛生用品除商品本身有瑕疵外，未拆封商品仍享有十天猶豫期之退貨權利。但已拆封
+                                    (如剪標、下水等情形…)，依據《通訊交易解除權合理例外情事適用準則》，本公司無法接受退換貨。<br>
+                                    ※個人衛生用品：泛指與肌膚及人體私密處接觸之商品，例如：內衣褲(含隱形胸罩、胸扥、胸貼、透明肩帶、水餃墊/美胸墊、襯裙)、塑身衣(含馬甲、束褲、束腿、腰夾、內搭)、泳裝、襪子、紙尿褲、牙刷….等。
+                                </li>
+                                <!-- 2016-02-16 ucwang 商品頁之退換貨須知內容調整 需求單號:2016012700031463-->
+                                <p>運送服務：</p>
+                                <li>此商品可配送離島區域，您可於結帳時，選擇離島地址配送。</li>
+                                <li>商品之實際配貨日期、退換貨日期，依我們向您另行通知之內容為準。</li>
+                                <li>標示『安心配』商品類別，因商品屬性關係，將有專人與您約定送貨時間(可約定出貨日30天內日期)。※若為預購商品，以下單日網頁公告之配送日期，於一個工作天內（不含例假日）與您約定送貨時間。
+                                </li>
+                                <li>針對大型商品(包括：大型家電、家具床墊、健身按摩器材、車類...等)，我們將於完成收款確認後，一天內〈不含例假日〉將會有專人與您確認相關配送細節等的聯繫。偏遠地區、樓層費及其它加價費用，皆由廠商於約定配送時一併告知，廠商將保留出貨與否的權利。
+                                </li>
+                                <li>依照客戶指定配送之商品(約配商品)接獲訂單逾30日您未通知出貨及受領商品，為了保障您的權益，本公司得取消訂單，請客戶重新下單購買。</li>
+                                <p>售後服務：</p>
+                                <!-- 2016-02-16 ucwang 商品頁之退換貨須知內容調整 需求單號:2016012700031463-->
+                                <li>如您收到商品，請依正常程序儘速檢查商品，若商品發生新品瑕疵之情形，您可申請更換新品或退貨，請直接點選<a
+                                        href="https://www.momoshop.com.tw/mypage/MemberCenter.jsp?func=40"
+                                        target="_blank">聯絡我們</a>。
+                                </li>
+                                <li>若您對於購買流程、付款方式、退貨及商品運送方式有疑問，你可直接點選<a
+                                        href="https://www.momoshop.com.tw/mypage/MemberCenter.jsp"
+                                        target="_blank">會員中心</a>。
+                                </li>
+                                <p>特別說明：</p>
+                                <li>本公司收到您下單(要約)後，仍需確認交易條件正確、供貨商品有庫存或服務可提供。如有無法接受訂單之異常情形，或您下單後未能完成正常付款，應視為訂單(買賣契約)全部自始不成立或失效，本公司得於合理期間內通知說明拒絕接受訂單。請您重新依需求下單訂購。
+                                </li>
+                                <li>本公司對於所販售具遞延性之商品或服務，消費者權益均受保障。如因合作廠商無法提供商品或服務，請與本公司聯繫辦理退貨或換成等值商品。</li>
+                                <li>※特惠商品，不適用折價券</li>
+                                <li class="text-warning">以上內容引用MOMO購物網 退換貨須知</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <section class="py-5">
+
+        </section>
+
+    </main>
+
+
+
+</body>
+
+<!-- jquery -->
+<script src="../../import/jquery.js"></script>
+<!-- bootstrap5 -->
+<script src="../../import/bootstrap-5.3.1-dist/js/Popper.js"></script>
+<script src="../../import/bootstrap-5.3.1-dist/js/bootstrap.js"></script>
+<!-- fontaewsome6 -->
+<script src="../../import/fontawesome-free-6.4.2-web/js/all.js"></script>
+<!-- sweetalert2 -->
+<script src="../../import/sweetalert2.js"></script>
+<!-- jscookie -->
+<script src="../../import/jscookie.js"></script>
+
+<!-- 導覽列 -->
+<script src="../../util/navbar.js"></script>
+
+<script src="../productinfo/js/script.js"></script>
+
+
+
+</html>

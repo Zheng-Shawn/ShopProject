@@ -14,21 +14,20 @@ public class ProductRowMapper implements RowMapper<ProductVO>{
     public ProductVO mapRow(ResultSet resultSet, int i) throws SQLException {
         ProductVO productVO = new ProductVO();
 
-        productVO.setProduct_id(resultSet.getInt("product_id"));
-        productVO.setProduct_name(resultSet.getString("product_name"));
+        productVO.setProduct_id(resultSet.getInt("productId"));
+        productVO.setProduct_name(resultSet.getString("productName"));
 
-//        String to Enum 字串轉成Enum類型
+        //    String to Enum 字串轉成Enum類型
         String categoryStr = resultSet.getString("category");
         ProductCategory productCategory = ProductCategory.valueOf(categoryStr);
         productVO.setCategory(productCategory);
 
-
-        productVO.setImage_url(resultSet.getString("image_url"));
         productVO.setPrice(resultSet.getInt("price"));
-        productVO.setStock(resultSet.getInt("stock"));
+        productVO.setSold(resultSet.getInt("sold"));
         productVO.setDescription(resultSet.getString("description"));
-        productVO.setCreated_date(resultSet.getTimestamp("created_date"));
-        productVO.setLast_modified_date(resultSet.getTimestamp("last_modified_date"));
+        productVO.setCreated_date(resultSet.getTimestamp("createdDate"));
+        productVO.setLast_modified_date(resultSet.getTimestamp("lastModifiedDate"));
+        productVO.setBrand(resultSet.getString("brand"));
 
         return productVO;
     }

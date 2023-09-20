@@ -10,12 +10,12 @@ public class ProductVO {
     private Integer product_id;
     private String product_name;
     private ProductCategory category;
-    private String image_url;
     private Integer price;
-    private Integer stock;
+    private Integer sold;
     private String description;
     private Date created_date;
     private Date last_modified_date;
+    private String brand;
 
     public Integer getProduct_id() {
         return product_id;
@@ -41,14 +41,6 @@ public class ProductVO {
         this.category = category;
     }
 
-    public String getImage_url() {
-        return image_url;
-    }
-
-    public void setImage_url(String image_url) {
-        this.image_url = image_url;
-    }
-
     public Integer getPrice() {
         return price;
     }
@@ -57,12 +49,12 @@ public class ProductVO {
         this.price = price;
     }
 
-    public Integer getStock() {
-        return stock;
+    public Integer getSold() {
+        return sold;
     }
 
-    public void setStock(Integer stock) {
-        this.stock = stock;
+    public void setSold(Integer sold) {
+        this.sold = sold;
     }
 
     public String getDescription() {
@@ -87,5 +79,12 @@ public class ProductVO {
 
     public void setLast_modified_date(Date last_modified_date) {
         this.last_modified_date = last_modified_date;
+    }
+
+    public String getBrand() {
+        return brand;
+    }
+    public void setBrand(String brand) {
+        this.brand = brand;
     }
 }

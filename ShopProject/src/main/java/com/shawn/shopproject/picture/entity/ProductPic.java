@@ -19,26 +19,23 @@ public class ProductPic {
         return productPicId;
     }
 
-    public ProductPic setProductPicId(Integer productPicId) {
+    public void setProductPicId(Integer productPicId) {
         this.productPicId = productPicId;
-        return this;
     }
 
     public Integer getProductId() {
         return productId;
     }
 
-    public ProductPic setProductId(Integer productId) {
+    public void setProductId(Integer productId) {
         this.productId = productId;
-        return this;
     }
 
     public byte[] getProductPic() {
         return productPic;
     }
 
-    public ProductPic setProductPic(byte[] productPic) {
+    public void setProductPic(byte[] productPic) {
         this.productPic = productPic;
-        return this;
     }
 }

@@ -40,19 +40,15 @@ public class PicController {
     }
 
     @GetMapping("/product/pictures/{productid}")
-    public ResponseEntity<List<byte[]>> getAllProductPicsById(@PathVariable Integer productid) {
-
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.IMAGE_GIF);
-
+    public ResponseEntity<List<ProductPic>> getAllProductPicsById(@PathVariable Integer productid) {
         List list = picService.findAllProductPicByproductId(productid);
 
         if (list != null) {
-            return ResponseEntity.status(HttpStatus.OK).headers(headers).body(list);
+            return ResponseEntity.status(HttpStatus.OK).body(list);
         } else {
             list =  new ArrayList<>();
             list.add(picService.getUtilPic(1));
-            return ResponseEntity.status(HttpStatus.NO_CONTENT).headers(headers).body(list);
+            return ResponseEntity.status(HttpStatus.NO_CONTENT).body(list);
         }
     }
 
